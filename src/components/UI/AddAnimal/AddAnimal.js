@@ -12,7 +12,7 @@ const AddAnimal = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
 
-
+    //loaded image hosting key
     const img_hosting_token = process.env.NEXT_PUBLIC_imgbb_secret;
     // console.log(img_hosting_token);
 
