@@ -17,11 +17,20 @@ export const zoolandapi = createApi({
                 method:'POST',
                 body:newanimaldata
             }),
-            invalidatesTags:['donationtData']
+            invalidatesTags:['animalsData']
+        }),
+
+        animalCategoryAdd: builder.mutation({
+            query:({newanimalCategory})=>({
+                url:'animalCategory',//use axiosSecure
+                method:'POST',
+                body:newanimalCategory
+            }),
+            invalidatesTags:['animalsData']
         }),
 
     })
 })
 
 
-export const {useGetAllAnimalCollectionQuery, useAnimalDataAddMutation} = zoolandapi;
+export const {useGetAllAnimalCollectionQuery, useAnimalDataAddMutation, useAnimalCategoryAddMutation} = zoolandapi;

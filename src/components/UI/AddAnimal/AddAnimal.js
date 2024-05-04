@@ -73,21 +73,18 @@ const AddAnimal = () => {
 
 
                         <div className="form-control my-5">
-                            <label className="label">
-                                <span className="label-text text-black font-bold">Animal Name</span>
-                            </label>
-                            <input className="bg-gray-300 input input-bordered" {...register("animalName", { required: true, maxLength: 20 })} />
+
+                            <input placeholder="Animal Name" className="bg-gray-300 input input-bordered" {...register("animalName", { required: true, maxLength: 20 })} />
 
                         </div>
 
 
                         <div className="form-control my-5">
                             <label className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text text-black font-bold">Choose Category</span>
-                                </label>
 
-                                <select className="select select-bordered bg-gray-300 text-black" {...register("category")}>
+
+                                <select placeholder="Choose Category" className="select select-bordered bg-gray-300 text-black" {...register("category")}>
+                                    <option disabled selected>Pick one</option>
                                     <option value="land animal">land animal</option>
                                     <option value="bird">bird</option>
                                     <option value="fish">fish</option>
@@ -101,9 +98,7 @@ const AddAnimal = () => {
 
 
                         <div className="form-control w-full max-w-xs mt-2">
-                            <label className="label">
-                                <span className="label-text text-black font-bold">Item Image*</span>
-                            </label>
+
                             <input type="file"
                                 {...register("img", { required: true })}
                                 className="file-input bg-gray-300 text-black file-input-bordered w-full max-w-xs" />
