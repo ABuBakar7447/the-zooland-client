@@ -11,6 +11,11 @@ export const zoolandapi = createApi({
             providesTags:['animalsData'],
         }),
 
+        getAllCategory: builder.query({
+            query:()=>'categoryCollection',
+            providesTags:['animalsData'],
+        }),
+
         animalDataAdd: builder.mutation({
             query:({newanimaldata})=>({
                 url:'animalDataAdd',//use axiosSecure
@@ -33,4 +38,4 @@ export const zoolandapi = createApi({
 })
 
 
-export const {useGetAllAnimalCollectionQuery, useAnimalDataAddMutation, useAnimalCategoryAddMutation} = zoolandapi;
+export const {useGetAllAnimalCollectionQuery, useGetAllCategoryQuery, useAnimalDataAddMutation, useAnimalCategoryAddMutation} = zoolandapi;

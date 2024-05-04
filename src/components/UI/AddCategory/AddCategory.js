@@ -7,19 +7,15 @@ const AddCategory = () => {
     const [animalCategoryAdd] = useAnimalCategoryAddMutation()
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-
-
-
-
     const handleCreate = data => {
-        console.log(data);
+        // console.log(data);
  
         const newanimalCategory = {
             category: data.name,
             
         }
 
-        console.log(newanimalCategory);
+        // console.log(newanimalCategory);
 
 
         animalCategoryAdd({ newanimalCategory });
@@ -30,6 +26,7 @@ const AddCategory = () => {
             showConfirmButton: false,
             timer: 1500
         });
+        reset();
 
     }
     return (
@@ -53,9 +50,6 @@ const AddCategory = () => {
                                 <input placeholder="name" className="bg-gray-300 input input-bordered" {...register("name", { required: true, maxLength: 20 })} />
 
                             </div>
-
-
-
 
                         </div>
 

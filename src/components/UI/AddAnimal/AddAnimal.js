@@ -1,16 +1,21 @@
 "use client"
-import { useAnimalDataAddMutation } from "@/redux/api";
+import { useAnimalDataAddMutation, useGetAllCategoryQuery } from "@/redux/api";
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2'
 
 const AddAnimal = () => {
-    const [animalDataAdd] = useAnimalDataAddMutation()
+    const [animalDataAdd] = useAnimalDataAddMutation();
+
+    //category loading from the server
+    const { data } = useGetAllCategoryQuery('', { refetchOnMountOrArgChange: true, pollingInterval: 30000 });
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
 
 
     const img_hosting_token = process.env.NEXT_PUBLIC_imgbb_secret;
     // console.log(img_hosting_token);
+
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
     const handleCreate = data => {
@@ -44,12 +49,14 @@ const AddAnimal = () => {
 
                     animalDataAdd({ newanimaldata });
                     Swal.fire({
+                        
                         position: "top-end",
                         icon: "success",
                         title: "New animal data has been saved",
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    reset();
 
 
                 }
@@ -78,17 +85,15 @@ const AddAnimal = () => {
 
                         </div>
 
-
+                        {/* category from the loaded data */}
                         <div className="form-control my-5">
                             <label className="form-control w-full max-w-xs">
-
-
                                 <select placeholder="Choose Category" className="select select-bordered bg-gray-300 text-black" {...register("category")}>
                                     <option disabled selected>Pick one</option>
-                                    <option value="land animal">land animal</option>
-                                    <option value="bird">bird</option>
-                                    <option value="fish">fish</option>
-                                    <option value="insect">insect</option>
+                                    {data?.map(item =>
+                                        <option value={item.category} key={item._id}>
+                                            {item.category}
+                                        </option>)}
                                 </select>
 
 
